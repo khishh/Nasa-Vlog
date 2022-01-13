@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+.hiddenExplanation {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1rem;
+  max-height: 4rem;
+  transition-property: max-height;
+  transition-duration: 0.5s;
+}
+
+.hiddenExplanation-active {
+  max-height: 100em;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  /* height: 100vh;
+  width: 100vw; */
+  min-height: 100vh;
+  background-image: url("../public/earth.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  padding: "1rem";
+  justify-content: center;
+  /* background-size: cover; */
+}
+
+.apod-post-wrapper {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* .apod-main-wrapper {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+} */
+
+.apod-left-main-wrapper {
+  flex: 1;
+}
+
+.apod-right-main-wrapper {
+  flex: 1;
+}

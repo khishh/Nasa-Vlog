@@ -8,7 +8,6 @@ export function generateAPODRequest(
     count?: number, 
 ) {
     const requestUrl = `https://api.nasa.gov/planetary/apod?api_key=${api_key}&start_date=${start_date}&end_date=${end_date}`;
-    console.log(requestUrl);
-    
+    console.log(requestUrl);   
     return requestUrl;
 }
