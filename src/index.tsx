@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
+import { SavedApodsContextProvider } from './SavedApodsContext';
 
 const theme = createTheme({
   typography: {
@@ -27,9 +28,11 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <SavedApodsContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </SavedApodsContextProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

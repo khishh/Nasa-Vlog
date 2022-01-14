@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { convertToDateFormat, fetchLikedApodDatesFromLocalStorage, generateAPODRequest, saveLikedApodDatesInLocalStorage } from '../utils';
 import { Apod } from '../models/apod';
@@ -8,6 +8,7 @@ import "../App.css"
 import { ThreeDots } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import LikeButton from '../components/LikeButton';
+import { SavedApodsContext } from '../SavedApodsContext';
 
 
 
@@ -16,12 +17,13 @@ function Home() {
   // TODO: apikey needs to be moved
   const apiKey = "pliz6dW9sZePBmgFd5nWSFMCAIR9ectVlqE4tUvO"
 
+  const { savedApods, saveLikedApod, saveDislikedApod } = useContext(SavedApodsContext)
+
   const [apods, setApods] = useState<Apod[]>([]);
   const endDate = useRef<Date>(new Date());
   const startDate = useRef<Date>();
   const [isFetching, setIsFetching] = useState(false);
 
-  const savedApods = useRef<Map<string, Apod>>(new Map<string, Apod>());
 
   // only called once 
   useEffect(() => {
@@ -41,24 +43,25 @@ function Home() {
       handleLoadMore();
     }
 
-    window.onscroll = function (event) {
+    window.addEventListener("scroll", (event) => {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight && !isFetching) {
         setIsFetching(true);
       }
-    };
+    }); 
 
     return () => {
       console.log('useEffect return handle...');
-      window.removeEventListener('onscroll', () => console.log('onScroll removed'));
+      // window.removeEventListener('onscroll', () => console.log('onScroll removed'));
+      window.removeEventListener('scroll', () => console.log('removed scroll listener'));
     };
 
   }, [isFetching])
 
   useEffect(() => {
 
-    window.onbeforeunload = () => {
+    window.addEventListener('onbeforeunload', () => {
       saveApodsToLocalStorage();
-    }
+    });
 
     return () => {
       // save savedApods in LocalStorage whenever refresh or leave
@@ -109,20 +112,20 @@ function Home() {
     fetchApodFromNASA();
   }
 
-  const saveLikedApod = (likedApod: Apod) => {
-    console.log('==== newly liked Apod ====');
-    console.log(likedApod);
+  // const saveLikedApod = (likedApod: Apod) => {
+  //   console.log('==== newly liked Apod ====');
+  //   console.log(likedApod);
 
-    savedApods.current.set(likedApod.date, likedApod);
-    console.log(savedApods.current);
-  }
+  //   savedApods.current.set(likedApod.date, likedApod);
+  //   console.log(savedApods.current);
+  // }
 
-  const saveDislikedApod = (dislikedApod: Apod) => {
-    console.log('==== newly disliked Apod ====');
-    console.log(dislikedApod);
-    savedApods.current.delete(dislikedApod.date);
-    console.log(savedApods.current);
-  }
+  // const saveDislikedApod = (dislikedApod: Apod) => {
+  //   console.log('==== newly disliked Apod ====');
+  //   console.log(dislikedApod);
+  //   savedApods.current.delete(dislikedApod.date);
+  //   console.log(savedApods.current);
+  // }
 
   return (
     <div className="home-wrapper">
