@@ -34,14 +34,14 @@ const APODCard = (props: APODCardtype) => {
                     props.apod.media_type === 'image' && <img src={props.apod.url} style={{ width: '100%', borderRadius: '1rem'}} />
                 }
                 <Typography variant='h4' fontWeight='600'>{props.apod.title}</Typography>
-                <Typography variant='h5' fontWeight='500' textAlign="right">{props.apod.date}</Typography>
+                <Typography variant='h5' fontWeight='600' textAlign="right">{props.apod.date}</Typography>
                 {
 
-                    <Typography variant="body1" className='hiddenExplanation'>{props.apod.explanation}</Typography>
+                    <Typography variant="body1" fontWeight="500" className='hiddenExplanation'>{props.apod.explanation}</Typography>
 
                 }
 
-                <Button style={{backgroundColor: "#23272A"}} variant="contained" onClick={onReadMoreClick} >
+                <Button style={{backgroundColor: "#23272A", padding: "0.5rem 1.5rem"}} variant="contained" onClick={onReadMoreClick} >
                     {isExpanded ? "Read Less" : "Read More"}
                 </Button>
             </Card>

@@ -51,8 +51,8 @@
 }
 
 .main-wrapper {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
   /* height: 100vh;
   width: 100vw; */
   min-height: 100vh;
@@ -63,28 +63,49 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  padding: "1rem";
+  /* padding: "1rem"; */
+  /* justify-content: space-evenly; */
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: "1rem"; 
   justify-content: center;
-  /* background-size: cover; */
+  margin-left: 15vw;
+  min-height: 100vh;
 }
 
 .apod-post-wrapper {
-  flex: 3;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 30vw;;
 }
 
-/* .apod-main-wrapper {
-  flex: 2;
-  display: flex;
-  flex-direction: row;
-} */
-
 .apod-left-main-wrapper {
-  flex: 1;
+  /* flex: 1; */
 }
 
 .apod-right-main-wrapper {
-  flex: 1;
+  /* flex: 1; */
+  /* width: 30vw; */
+  height: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+
+/* MenuBar.tsx */
+
+.manu-bar-main-wrapper {
+  height: 100%;
+  width: 15vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #23272A;
+  padding-top: 3rem;
 }
