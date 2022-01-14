@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { convertToDateFormat, generateAPODRequest } from '../utils';
+import { convertToDateFormat, fetchLikedApodDatesFromLocalStorage, generateAPODRequest, saveLikedApodDatesInLocalStorage } from '../utils';
 import { Apod } from '../models/apod';
 import APODCard from '../components/APODCard';
 import { Typography } from '@mui/material';
 import "../App.css"
-import MenuBar from '../components/MenuBar';
-
 import { ThreeDots } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import LikeButton from '../components/LikeButton';
@@ -25,28 +23,17 @@ function Home() {
 
   const savedApods = useRef<Set<string>>(new Set<string>());
 
-  console.log(apods);
-
-  // only called once
+  // only called once 
   useEffect(() => {
 
     setIsFetching(true);
 
-    const jsonLocallySavedApods = localStorage.getItem('savedApods');
-
-    if (jsonLocallySavedApods) {
-      const locallySavedApods: string[] = JSON.parse(jsonLocallySavedApods);
-      console.log(locallySavedApods);
-
-      locallySavedApods.forEach(savedApodDate => savedApods.current.add(savedApodDate));
-    }
+    const locallySavedApods: string[] = fetchLikedApodDatesFromLocalStorage();
+    locallySavedApods.forEach(savedApodDate => savedApods.current.add(savedApodDate));
 
   }, []);
 
   useEffect(() => {
-
-    console.log('isFetching changed ' + isFetching);
-
 
     if (isFetching) {
       handleLoadMore();
@@ -105,20 +92,7 @@ function Home() {
 
   const saveApodsToLocalStorage = () => {
     console.log('Saving Saved APODs to local storage...');
-    console.log(savedApods.current);
-
-    if (apods.length > 0) {
-
-      console.log('============== ' + savedApods.current.size);
-      
-
-      const savedApodDateList = [];
-      for(let savedApodDate of savedApods.current){
-        savedApodDateList.push(savedApodDate);
-      }
-
-      localStorage.setItem("savedApods", JSON.stringify(savedApodDateList));
-    }
+    saveLikedApodDatesInLocalStorage(Array.from(savedApods.current));
   }
 
   const handleLoadMore = () => {

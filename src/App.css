@@ -109,3 +109,16 @@
   background-color: #23272A;
   padding-top: 3rem;
 }
+
+.menu-text {
+  color: white;
+  padding: 0.5rem 0;
+}
+
+.menu-icon {
+  margin-right: 1rem;
+}
+
+/* .menu-text::before {
+  padding: 1rem;
+} */

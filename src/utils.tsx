@@ -11,3 +11,18 @@ export function generateAPODRequest(
     console.log(requestUrl);   
     return requestUrl;
 }
+
+export const fetchLikedApodDatesFromLocalStorage = () => {
+    const jsonLocallySavedApodDates = localStorage.getItem('savedApods');
+
+    if (jsonLocallySavedApodDates) {
+        const locallySavedApodDates: string[] = JSON.parse(jsonLocallySavedApodDates);
+        return locallySavedApodDates;
+    } else {
+        return [];
+    }
+}
+
+export const saveLikedApodDatesInLocalStorage = (savedApodDateList: string[]) => {
+    localStorage.setItem("savedApods", JSON.stringify(savedApodDateList));
+}
