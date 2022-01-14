@@ -21,15 +21,17 @@ function Home() {
   const startDate = useRef<Date>();
   const [isFetching, setIsFetching] = useState(false);
 
-  const savedApods = useRef<Set<string>>(new Set<string>());
+  const savedApods = useRef<Map<string, Apod>>(new Map<string, Apod>());
 
   // only called once 
   useEffect(() => {
 
     setIsFetching(true);
 
-    const locallySavedApods: string[] = fetchLikedApodDatesFromLocalStorage();
-    locallySavedApods.forEach(savedApodDate => savedApods.current.add(savedApodDate));
+    const locallySavedApods: Apod[] = fetchLikedApodDatesFromLocalStorage();
+    locallySavedApods.forEach(savedApod => savedApods.current.set(savedApod.date, savedApod));
+    console.log(locallySavedApods);
+    
 
   }, []);
 
@@ -92,7 +94,7 @@ function Home() {
 
   const saveApodsToLocalStorage = () => {
     console.log('Saving Saved APODs to local storage...');
-    saveLikedApodDatesInLocalStorage(Array.from(savedApods.current));
+    saveLikedApodDatesInLocalStorage(Array.from(savedApods.current.values()));
   }
 
   const handleLoadMore = () => {
@@ -111,7 +113,7 @@ function Home() {
     console.log('==== newly liked Apod ====');
     console.log(likedApod);
 
-    savedApods.current.add(likedApod.date);
+    savedApods.current.set(likedApod.date, likedApod);
     console.log(savedApods.current);
   }
 

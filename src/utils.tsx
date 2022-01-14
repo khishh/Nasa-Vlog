@@ -1,3 +1,5 @@
+import { Apod } from "./models/apod";
+
 export const convertToDateFormat = (date: Date) => date.toISOString().split('T')[0];
 
 export function generateAPODRequest(
@@ -13,16 +15,16 @@ export function generateAPODRequest(
 }
 
 export const fetchLikedApodDatesFromLocalStorage = () => {
-    const jsonLocallySavedApodDates = localStorage.getItem('savedApods');
+    const jsonLocallySavedApods = localStorage.getItem('savedApods');
 
-    if (jsonLocallySavedApodDates) {
-        const locallySavedApodDates: string[] = JSON.parse(jsonLocallySavedApodDates);
-        return locallySavedApodDates;
+    if (jsonLocallySavedApods) {
+        const locallySavedApods: Apod[] = JSON.parse(jsonLocallySavedApods);
+        return locallySavedApods;
     } else {
         return [];
     }
 }
 
-export const saveLikedApodDatesInLocalStorage = (savedApodDateList: string[]) => {
-    localStorage.setItem("savedApods", JSON.stringify(savedApodDateList));
+export const saveLikedApodDatesInLocalStorage = (savedApodList: Apod[]) => {
+    localStorage.setItem("savedApods", JSON.stringify(savedApodList));
 }
