@@ -9,6 +9,7 @@ import MenuBar from '../components/MenuBar';
 
 import { ThreeDots } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import LikeButton from '../components/LikeButton';
 
 
 
@@ -22,7 +23,7 @@ function Home() {
   const startDate = useRef<Date>();
   const [isFetching, setIsFetching] = useState(false);
 
-  const savedApods = useRef<Apod[]>([]);
+  const savedApods = useRef<Set<string>>(new Set<string>());
 
   console.log(apods);
 
@@ -34,8 +35,10 @@ function Home() {
     const jsonLocallySavedApods = localStorage.getItem('savedApods');
 
     if (jsonLocallySavedApods) {
-      const locallySavedApods: Apod[] = JSON.parse(jsonLocallySavedApods);
+      const locallySavedApods: string[] = JSON.parse(jsonLocallySavedApods);
       console.log(locallySavedApods);
+
+      locallySavedApods.forEach(savedApodDate => savedApods.current.add(savedApodDate));
     }
 
   }, []);
@@ -43,30 +46,42 @@ function Home() {
   useEffect(() => {
 
     console.log('isFetching changed ' + isFetching);
-    
 
-    if(isFetching) {
+
+    if (isFetching) {
       handleLoadMore();
     }
 
     window.onscroll = function (event) {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight && !isFetching) {
-        // handleLoadMore();
         setIsFetching(true);
       }
     };
 
     return () => {
       console.log('useEffect return handle...');
-      
       window.removeEventListener('onscroll', () => console.log('onScroll removed'));
     };
 
   }, [isFetching])
 
+  useEffect(() => {
+
+    window.onbeforeunload = () => {
+      saveApodsToLocalStorage();
+    }
+
+    return () => {
+      // save savedApods in LocalStorage whenever refresh or leave
+      saveApodsToLocalStorage();
+      window.removeEventListener('onbeforeunload', () => console.log('onbeforeunload remomved'));
+    }
+
+  }, [apods])
+
   const fetchApodFromNASA = () => {
     console.log('handleLoadMore...');
-    
+
     if (startDate.current) {
       axios.get(generateAPODRequest(
         apiKey,
@@ -88,10 +103,25 @@ function Home() {
     }
   }
 
-  const handleLoadMore = () => {    
-    // const newEndDate = new Date(startDate.current);
-    // newEndDate.setDate(newEndDate.getDate() - 1);
-    // endDate.current = newEndDate;
+  const saveApodsToLocalStorage = () => {
+    console.log('Saving Saved APODs to local storage...');
+    console.log(savedApods.current);
+
+    if (apods.length > 0) {
+
+      console.log('============== ' + savedApods.current.size);
+      
+
+      const savedApodDateList = [];
+      for(let savedApodDate of savedApods.current){
+        savedApodDateList.push(savedApodDate);
+      }
+
+      localStorage.setItem("savedApods", JSON.stringify(savedApodDateList));
+    }
+  }
+
+  const handleLoadMore = () => {
     const _startDate = new Date(endDate.current);
     _startDate.setDate(_startDate.getDate() - 10);
 
@@ -101,8 +131,21 @@ function Home() {
     console.log(endDate.current.toUTCString());
 
     fetchApodFromNASA();
-    
+  }
 
+  const saveLikedApod = (likedApod: Apod) => {
+    console.log('==== newly liked Apod ====');
+    console.log(likedApod);
+
+    savedApods.current.add(likedApod.date);
+    console.log(savedApods.current);
+  }
+
+  const saveDislikedApod = (dislikedApod: Apod) => {
+    console.log('==== newly disliked Apod ====');
+    console.log(dislikedApod);
+    savedApods.current.delete(dislikedApod.date);
+    console.log(savedApods.current);
   }
 
   return (
@@ -110,11 +153,14 @@ function Home() {
       <div className="apod-post-wrapper">
         {
           apods.map((apod) =>
-            <APODCard key={apod.date} apod={apod} />)
+            <APODCard key={apod.date} apod={apod} renderHeartButton={() => (
+              // render props to avoid "props drilling"
+              <LikeButton apod={apod} initialIsLiked={savedApods.current.has(apod.date)} saveLikedApod={saveLikedApod} saveDislikedApod={saveDislikedApod} />
+            )} />)
         }
         {
           isFetching &&
-          <ThreeDots color="#00BFFF" height={80} width={"100%"} />
+          <ThreeDots color="#F6F6F6" height={80} width={"100%"} />
         }
       </div>
       <div className="apod-right-main-wrapper">

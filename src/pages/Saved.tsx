@@ -9,17 +9,12 @@ const Saved = () => {
 
     // only called when the page is opened
     useEffect(() => {
-
-        // setSavedApod(JSON.parse(localStorage["saved"]));
-        
-        return () => {
-            
-        }
+    
     }, [])
 
     return (
         <div  style={{ width: "100vh", minHeight: "100vh", margin:"0 0 0 15vw "}}>
-            <LikeButton />
+            {/* <LikeButton /> */}
         </div>
 
     )

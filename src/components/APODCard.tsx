@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LikeButton from './LikeButton';
 
 
-const APODCard = (props: APODCardtype) => {
+const APODCard = (props: APODCardPropstype) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const onReadMoreClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -26,7 +26,7 @@ const APODCard = (props: APODCardtype) => {
     return (
 
         <Card id={props.apod.date} style={{ padding: "1rem", margin: "1rem", backgroundColor: "#F6F6F6", position: "relative"}}>
-            <LikeButton />
+            {props.renderHeartButton()}
             {
                 props.apod.media_type === 'video' && <iframe src={props.apod.url} style={{ width: '100%', height: '40vh', borderRadius: '1rem' }} />
             }
@@ -52,6 +52,7 @@ const APODCard = (props: APODCardtype) => {
 
 export default APODCard
 
-type APODCardtype = {
-    apod: Apod
+type APODCardPropstype = {
+    apod: Apod;
+    renderHeartButton: () => JSX.Element;
 }
