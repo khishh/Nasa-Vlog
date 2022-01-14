@@ -1,0 +1,28 @@
+.heart {
+    background: url('../public/heart.png') no-repeat;
+    display:block;
+    height: 3rem;
+    width: 3rem;
+    margin: auto;
+    background-size: 2900%;
+}
+
+.heart-active {
+    animation: animate .8s steps(28) 1;
+    background-position: right;
+}
+
+.heart-wrapper {
+    background-color: transparent;
+    width: 100%;
+    position: relative;
+}
+
+@keyframes animate {
+    0%{
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
+}

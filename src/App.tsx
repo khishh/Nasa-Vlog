@@ -1,9 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-import { convertToDateFormat, generateAPODRequest } from './utils';
-import { Apod } from './models/apod';
-import APODCard from './components/APODCard';
-import {Typography } from '@mui/material';
+import React from 'react';
 import "./App.css"
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';

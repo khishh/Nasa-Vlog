@@ -4,11 +4,10 @@ import { Apod } from '../models/apod'
 import '../App.css'
 import { Accordion, AccordionDetails, AccordionSummary, Button, Card, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LikeButton from './LikeButton';
 
 
 const APODCard = (props: APODCardtype) => {
-    console.log(props.apod);
-
     const [isExpanded, setIsExpanded] = useState(false);
 
     const onReadMoreClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -25,30 +24,29 @@ const APODCard = (props: APODCardtype) => {
     }
 
     return (
-        
-            <Card style={{ padding: "1rem", margin: "1rem", backgroundColor: "#F6F6F6"}}>
-                {
-                    props.apod.media_type === 'video' && <iframe src={props.apod.url} style={{ width: '100%', height: '40vh', borderRadius: '1rem'}} />
-                }
-                {
-                    props.apod.media_type === 'image' && <img src={props.apod.url} style={{ width: '100%', borderRadius: '1rem'}} />
-                }
-                <Typography variant='h4' fontWeight='600'>{props.apod.title}</Typography>
-                <Typography variant='h5' fontWeight='600' textAlign="right">{props.apod.date}</Typography>
-                {
 
-                    <Typography variant="body1" fontWeight="500" className='hiddenExplanation'>{props.apod.explanation}</Typography>
+        <Card id={props.apod.date} style={{ padding: "1rem", margin: "1rem", backgroundColor: "#F6F6F6", position: "relative"}}>
+            <LikeButton />
+            {
+                props.apod.media_type === 'video' && <iframe src={props.apod.url} style={{ width: '100%', height: '40vh', borderRadius: '1rem' }} />
+            }
+            {
+                props.apod.media_type === 'image' && <img src={props.apod.url} style={{ width: '100%', borderRadius: '1rem' }} />
+            }
 
-                }
+            <Typography variant='h4' fontWeight='600'>{props.apod.title}</Typography>
+            <Typography variant='h5' fontWeight='600' textAlign="right">{props.apod.date}</Typography>
+            {
 
-                <Button style={{backgroundColor: "#23272A", padding: "0.5rem 1.5rem"}} variant="contained" onClick={onReadMoreClick} >
-                    {isExpanded ? "Read Less" : "Read More"}
-                </Button>
-            </Card>
+                <Typography variant="body1" fontWeight="500" className='hiddenExplanation'>{props.apod.explanation}</Typography>
 
+            }
 
+            <Button style={{ backgroundColor: "#23272A", padding: "0.5rem 1.5rem" }} variant="contained" onClick={onReadMoreClick} >
+                {isExpanded ? "Read Less" : "Read More"}
+            </Button>
+        </Card>
 
-        
     )
 }
 

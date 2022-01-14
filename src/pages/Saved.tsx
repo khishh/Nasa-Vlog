@@ -1,10 +1,25 @@
 import { Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import LikeButton from '../components/LikeButton';
+import { Apod } from '../models/apod';
 
 const Saved = () => {
-    return (
-        <div style={{ width: "100vh", minHeight: "100vh", margin:"0 0 0 15vw "}}>
+
+    const [savedApod, setSavedApod] = useState<Apod[]>([]);
+
+    // only called when the page is opened
+    useEffect(() => {
+
+        // setSavedApod(JSON.parse(localStorage["saved"]));
+        
+        return () => {
             
+        }
+    }, [])
+
+    return (
+        <div  style={{ width: "100vh", minHeight: "100vh", margin:"0 0 0 15vw "}}>
+            <LikeButton />
         </div>
 
     )
