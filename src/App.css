@@ -1,5 +1,6 @@
 .main-wrapper {
   min-height: 100vh;
+  /* this has to be changed to /earth.png in prod */
   background-image: url("../public/earth.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;

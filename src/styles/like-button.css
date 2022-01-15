@@ -1,4 +1,5 @@
 .heart {
+    /* this has to be changed to /heart.png in prod */
     background: url('../../public/heart.png') no-repeat;
     display:block;
     height: 3rem;

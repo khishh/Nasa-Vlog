@@ -127,9 +127,9 @@ function Home() {
           <ThreeDots color="#F6F6F6" height={80} width={"100%"} />
         }
       </div>
-      {/* <div className="apod-right-main-wrapper">
+      <div className="apod-right-main-wrapper">
         <SideNote />
-      </div> */}
+      </div>
     </div>
 
   );
