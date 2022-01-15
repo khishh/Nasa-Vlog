@@ -9,7 +9,6 @@ const APODCard = (props: APODCardPropstype) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const onReadMoreClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        console.log(event.currentTarget.parentElement);
         const parentDiv = event.currentTarget.parentElement;
         if (parentDiv) {
             const hiddenText = parentDiv.querySelector('.hiddenExplanation');

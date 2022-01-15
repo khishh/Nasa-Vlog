@@ -3,7 +3,6 @@ import axios from 'axios';
 import { convertToDateFormat, fetchLikedApodDatesFromLocalStorage, generateAPODRequest, saveLikedApodDatesInLocalStorage } from '../utils';
 import { Apod } from '../models/apod';
 import APODCard from '../components/APODCard';
-import { Typography } from '@mui/material';
 import "../App.css"
 import "../styles/home.css"
 import { ThreeDots } from 'react-loader-spinner';
@@ -37,7 +36,6 @@ function Home() {
 
     const locallySavedApods: Apod[] = fetchLikedApodDatesFromLocalStorage();
     locallySavedApods.forEach(savedApod => savedApods.current.set(savedApod.date, savedApod));
-    console.log(locallySavedApods);
 
     window.addEventListener("scroll", (event) => {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight && isMounted.current && !isFetching) {
@@ -46,8 +44,6 @@ function Home() {
     });
 
     return () => {
-      console.log('useEffect return handle...');
-      // window.removeEventListener('onscroll', () => console.log('onScroll removed'));
       window.removeEventListener('scroll', () => console.log('removed scroll listener'));
     };
 
@@ -76,7 +72,6 @@ function Home() {
   }, [apods])
 
   const fetchApodFromNASA = () => {
-    console.log('handleLoadMore...');
 
     if (startDate.current) {
       axios.get(generateAPODRequest(
@@ -105,7 +100,6 @@ function Home() {
   }
 
   const saveApodsToLocalStorage = () => {
-    console.log('Saving Saved APODs to local storage...');
     saveLikedApodDatesInLocalStorage(Array.from(savedApods.current.values()));
   }
 
@@ -114,9 +108,6 @@ function Home() {
     _startDate.setDate(_startDate.getDate() - 10);
 
     startDate.current = _startDate;
-
-    console.log(startDate.current.toUTCString());
-    console.log(endDate.current.toUTCString());
 
     fetchApodFromNASA();
   }

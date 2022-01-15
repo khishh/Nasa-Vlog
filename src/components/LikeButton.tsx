@@ -20,9 +20,7 @@ const LikeButton = (props: LikeButtonPropsType) => {
         const clickedNode = event.currentTarget;
         clickedNode.querySelector('span')?.classList.toggle('heart-active');
 
-        isLiked.current = !isLiked.current;
-        console.log(isLiked.current);
-        
+        isLiked.current = !isLiked.current;        
 
         isLiked.current ? props.saveLikedApod(props.apod) : props.saveDislikedApod(props.apod);
     }

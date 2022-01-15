@@ -8,18 +8,11 @@ export const SavedApodsContextProvider = (props: SavedApodsContextPropsType) => 
     const savedApods = useRef<Map<string, Apod>>(new Map<string, Apod>());
 
     const saveLikedApod = (likedApod: Apod) => {
-        console.log('==== newly liked Apod ====');
-        console.log(likedApod);
-
         savedApods.current.set(likedApod.date, likedApod);
-        console.log(savedApods.current);
     }
 
     const saveDislikedApod = (dislikedApod: Apod) => {
-        console.log('==== newly disliked Apod ====');
-        console.log(dislikedApod);
         savedApods.current.delete(dislikedApod.date);
-        console.log(savedApods.current);
     }
 
     return (

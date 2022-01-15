@@ -21,7 +21,6 @@ const Saved = () => {
 
         const _apods: Apod[] = Array.from(savedApods.current.values());
         const _sortedApods = _apods.sort((a, b) => a.date < b.date ? 1 : -1);
-        console.log(_sortedApods);
 
         setApods(_sortedApods);
 
