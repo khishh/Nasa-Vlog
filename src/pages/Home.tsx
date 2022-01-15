@@ -5,11 +5,13 @@ import { Apod } from '../models/apod';
 import APODCard from '../components/APODCard';
 import { Typography } from '@mui/material';
 import "../App.css"
+import "../styles/home.css"
 import { ThreeDots } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import LikeButton from '../components/LikeButton';
 import { SavedApodsContext } from '../SavedApodsContext';
 import useMountedStatus from '../hooks/UseMountedStatus';
+import SideNote from '../components/SideNote';
 
 
 
@@ -134,10 +136,9 @@ function Home() {
           <ThreeDots color="#F6F6F6" height={80} width={"100%"} />
         }
       </div>
-      <div className="apod-right-main-wrapper">
-        <Typography variant='h1'>Right</Typography>
-
-      </div>
+      {/* <div className="apod-right-main-wrapper">
+        <SideNote />
+      </div> */}
     </div>
 
   );

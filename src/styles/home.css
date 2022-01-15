@@ -1,0 +1,8 @@
+.apod-post-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* space for sidenote */
+    /* margin-right: 30vw; */
+  }

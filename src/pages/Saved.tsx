@@ -6,6 +6,8 @@ import { Apod } from '../models/apod';
 import { SavedApodsContext } from '../SavedApodsContext';
 import { fetchLikedApodDatesFromLocalStorage, saveLikedApodDatesInLocalStorage } from '../utils';
 
+import "../styles/saved.css"
+
 const Saved = () => {
 
     const { savedApods, saveLikedApod, saveDislikedApod } = useContext(SavedApodsContext);
@@ -47,9 +49,9 @@ const Saved = () => {
             <div className="saved-apod-post-wrapper">
                 {
                     apods.length == 0 && (
-                        <div style={{ backgroundColor: "#23272A", margin: 'auto', borderRadius: ".5rem" }}>
-                            <Typography textAlign="center" variant='h4' fontWeight='700' style={{ color: "white" }}>You haven't added any Posts to your Likes yet</Typography>
-                            <Typography textAlign="center" variant='body1' fontWeight='400' style={{ color: "white" }}>Like some cool posts from Home and personalize your collections!</Typography>
+                        <div className="no-saved-wrapper">
+                            <Typography textAlign="center" variant='h4' fontWeight='700' color="white" >You haven't added any Posts to your Likes yet</Typography>
+                            <Typography textAlign="center" variant='body1' fontWeight='500' color="white">Like some cool posts from Home and personalize your collections!</Typography>
                         </div>
                     )
                 }

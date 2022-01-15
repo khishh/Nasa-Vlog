@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import "../heart-button.css"
+import "../styles/like-button.css";
 import { Apod } from '../models/apod';
 
 const LikeButton = (props: LikeButtonPropsType) => {
@@ -28,7 +28,7 @@ const LikeButton = (props: LikeButtonPropsType) => {
     }
 
     return (
-        <div onClick={handleLikeClicked} style={{position: "absolute", top: "2rem", right:"2rem", borderRadius:"3rem", backgroundColor:"#F6F6F6"}}>
+        <div className="heart-wrapper" onClick={handleLikeClicked}>
             <span className="heart" ref={heartIcon}></span>
         </div>
     )

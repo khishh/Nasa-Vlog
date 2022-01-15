@@ -1,5 +1,5 @@
 .heart {
-    background: url('../public/heart.png') no-repeat;
+    background: url('../../public/heart.png') no-repeat;
     display:block;
     height: 3rem;
     width: 3rem;
@@ -13,9 +13,15 @@
 }
 
 .heart-wrapper {
-    background-color: transparent;
-    width: 100%;
-    position: relative;
+    position: absolute;
+    top: 2rem; 
+    right:2rem;
+    border-radius:3rem;
+    background-color: #F6F6F6;
+}
+
+.heart-wrapper:hover {
+    background-color: #fce4ec;
 }
 
 @keyframes animate {

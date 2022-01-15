@@ -11,9 +11,7 @@ function App() {
 
   return (
     <div className="main-wrapper">
-      <div className="apod-left-main-wrapper">
-        <MenuBar />
-      </div>
+      <MenuBar />
       <Routes>
         <Route path="/" element={ <Home />}/>   
         <Route path="/saved" element={ <Saved />}/>   

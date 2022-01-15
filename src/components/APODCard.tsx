@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Apod } from '../models/apod'
 import '../App.css'
-import { Button, Card, Typography } from '@mui/material';
+import '../styles/apod-card.css'
+import { Card, Typography } from '@mui/material';
 
 
 const APODCard = (props: APODCardPropstype) => {
@@ -22,13 +23,13 @@ const APODCard = (props: APODCardPropstype) => {
 
     return (
 
-        <Card id={props.apod.date} style={{ padding: "1rem", margin: "1rem", backgroundColor: "#F6F6F6", position: "relative"}}>
+        <Card id={props.apod.date} className="apod-card-wrapper">
             {props.renderHeartButton()}
             {
-                props.apod.media_type === 'video' && <iframe src={props.apod.url} style={{ width: '100%', height: '40vh', borderRadius: '1rem' }} />
+                props.apod.media_type === 'video' && <iframe className="apod-card-iframe" src={props.apod.url} />
             }
             {
-                props.apod.media_type === 'image' && <img src={props.apod.url} style={{ width: '100%', borderRadius: '1rem' }} />
+                props.apod.media_type === 'image' && <img className="apod-card-img" src={props.apod.url} />
             }
 
             <Typography variant='h4' fontWeight='600'>{props.apod.title}</Typography>
@@ -39,9 +40,10 @@ const APODCard = (props: APODCardPropstype) => {
 
             }
 
-            <Button style={{ backgroundColor: "#23272A", padding: "0.5rem 1.5rem" }} variant="contained" onClick={onReadMoreClick} >
-                {isExpanded ? "Read Less" : "Read More"}
-            </Button>
+            <button className="apod-card-button" onClick={onReadMoreClick}>
+                <Typography>{isExpanded ? "Read Less" : "Read More"}</Typography>
+            </button>
+
         </Card>
 
     )

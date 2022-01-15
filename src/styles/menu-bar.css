@@ -1,0 +1,29 @@
+.manu-bar-main-wrapper {
+    height: 100%;
+    width: 15vw;
+    box-sizing: content-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #23272A;
+    padding-top: 2rem;
+}
+
+.menu-text {
+    color: white;
+    padding: 0.5rem 0;
+    background-color: #23272A;
+}
+
+.menu-text:hover {
+    background-color: #424242;
+}
+  
+.menu-icon {
+    margin-right: 1rem;
+}
+
+.menu-link {
+    text-decoration: none; 
+    box-shadow: none;
+}
