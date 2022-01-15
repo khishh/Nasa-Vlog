@@ -9,6 +9,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import LikeButton from '../components/LikeButton';
 import { SavedApodsContext } from '../SavedApodsContext';
+import useMountedStatus from '../hooks/UseMountedStatus';
 
 
 
@@ -20,10 +21,12 @@ function Home() {
   const { savedApods, saveLikedApod, saveDislikedApod } = useContext(SavedApodsContext)
 
   const [apods, setApods] = useState<Apod[]>([]);
-  const endDate = useRef<Date>(new Date());
-  const startDate = useRef<Date>();
   const [isFetching, setIsFetching] = useState(false);
 
+  const endDate = useRef<Date>(new Date());
+  const startDate = useRef<Date>();
+
+  const isMounted = useMountedStatus();
 
   // only called once 
   useEffect(() => {
@@ -33,27 +36,26 @@ function Home() {
     const locallySavedApods: Apod[] = fetchLikedApodDatesFromLocalStorage();
     locallySavedApods.forEach(savedApod => savedApods.current.set(savedApod.date, savedApod));
     console.log(locallySavedApods);
-    
-
-  }, []);
-
-  useEffect(() => {
-
-    if (isFetching) {
-      handleLoadMore();
-    }
 
     window.addEventListener("scroll", (event) => {
-      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight && !isFetching) {
+      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight && isMounted.current && !isFetching) {
         setIsFetching(true);
       }
-    }); 
+    });
 
     return () => {
       console.log('useEffect return handle...');
       // window.removeEventListener('onscroll', () => console.log('onScroll removed'));
       window.removeEventListener('scroll', () => console.log('removed scroll listener'));
     };
+
+  }, []);
+
+  useEffect(() => {
+
+    if (isFetching && isMounted.current) {
+      handleLoadMore();
+    }
 
   }, [isFetching])
 
@@ -83,15 +85,20 @@ function Home() {
           let newApods: Apod[] = [];
           response.data.forEach((apod: Apod) => newApods.push(apod));
           newApods = newApods.reverse()
-          setApods((prevApods) => [...prevApods, ...newApods]);
-          setIsFetching(false);
+
+          if (isMounted.current) {
+            setApods((prevApods) => [...prevApods, ...newApods]);
+            setIsFetching(false);
+          }
 
           const newEndDate = new Date(startDate.current!);
           newEndDate.setDate(newEndDate.getDate() - 1);
           endDate.current = newEndDate;
         });
     } else {
-      setIsFetching(false);
+      if (isMounted.current) {
+        setIsFetching(false);
+      }
     }
   }
 
@@ -111,21 +118,6 @@ function Home() {
 
     fetchApodFromNASA();
   }
-
-  // const saveLikedApod = (likedApod: Apod) => {
-  //   console.log('==== newly liked Apod ====');
-  //   console.log(likedApod);
-
-  //   savedApods.current.set(likedApod.date, likedApod);
-  //   console.log(savedApods.current);
-  // }
-
-  // const saveDislikedApod = (dislikedApod: Apod) => {
-  //   console.log('==== newly disliked Apod ====');
-  //   console.log(dislikedApod);
-  //   savedApods.current.delete(dislikedApod.date);
-  //   console.log(savedApods.current);
-  // }
 
   return (
     <div className="home-wrapper">

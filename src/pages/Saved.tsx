@@ -43,22 +43,25 @@ const Saved = () => {
     }
 
     return (
-        <div style={{ width: "100vh", minHeight: "100vh", margin: "0 0 0 15vw ", padding: "1rem" }}>
-            {
-                apods.length == 0 && (
-                    <div style={{ backgroundColor: "#23272A", margin: 'auto', borderRadius: ".5rem"}}>
-                        <Typography textAlign="center" variant='h4' fontWeight='700' style={{color: "white"}}>You haven't added any Posts to your Likes yet</Typography>
-                        <Typography textAlign="center" variant='body1' fontWeight='400' style={{color: "white"}}>Like some cool posts from Home and personalize your collections!</Typography>
-                    </div>
-                )
-            }
-            {
-                apods.map((apod) =>
-                    <APODCard key={apod.date} apod={apod} renderHeartButton={() => (
-                        // render props to avoid "props drilling"
-                        <LikeButton apod={apod} initialIsLiked={true} saveLikedApod={saveLikedApod} saveDislikedApod={handleSaveDislikedApod} />
-                    )} />)
-            }
+        <div className="home-wrapper">
+            <div className="saved-apod-post-wrapper">
+                {
+                    apods.length == 0 && (
+                        <div style={{ backgroundColor: "#23272A", margin: 'auto', borderRadius: ".5rem" }}>
+                            <Typography textAlign="center" variant='h4' fontWeight='700' style={{ color: "white" }}>You haven't added any Posts to your Likes yet</Typography>
+                            <Typography textAlign="center" variant='body1' fontWeight='400' style={{ color: "white" }}>Like some cool posts from Home and personalize your collections!</Typography>
+                        </div>
+                    )
+                }
+                {
+                    apods.map((apod) =>
+                        <APODCard key={apod.date} apod={apod} renderHeartButton={() => (
+                            // render props to avoid "props drilling"
+                            <LikeButton apod={apod} initialIsLiked={true} saveLikedApod={saveLikedApod} saveDislikedApod={handleSaveDislikedApod} />
+                        )} />)
+                }
+            </div>
+
 
         </div>
 

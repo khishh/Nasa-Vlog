@@ -1,4 +1,3 @@
-
 export interface Apod {
     copyright: string,
     date: string

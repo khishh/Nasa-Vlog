@@ -12,7 +12,6 @@ function App() {
   return (
     <div className="main-wrapper">
       <div className="apod-left-main-wrapper">
-        {/* <Typography variant='h1'>Left</Typography> */}
         <MenuBar />
       </div>
       <Routes>

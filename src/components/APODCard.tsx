@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import { transform } from 'typescript';
 import { Apod } from '../models/apod'
 import '../App.css'
-import { Accordion, AccordionDetails, AccordionSummary, Button, Card, Typography } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import LikeButton from './LikeButton';
+import { Button, Card, Typography } from '@mui/material';
 
 
 const APODCard = (props: APODCardPropstype) => {
