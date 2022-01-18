@@ -2,11 +2,29 @@ import React, { useState } from 'react'
 import { Apod } from '../models/apod'
 import '../App.css'
 import '../styles/apod-card.css'
-import { Card, Typography } from '@mui/material';
+import { Card, Typography, useTheme } from '@mui/material';
 
 
 const APODCard = (props: APODCardPropstype) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    
+    const theme = useTheme();
+
+    theme.typography.h4 = {
+        fontSize: '1.2rem',
+        [theme.breakpoints.up('sm')]: {
+            fontSize: '1.5rem',
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: '1.8rem',
+        },
+    }
+
+    theme.typography.body1 = {
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '0.9rem',
+        },
+    }
 
     const onReadMoreClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const parentDiv = event.currentTarget.parentElement;

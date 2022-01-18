@@ -1,0 +1,25 @@
+.bottom-bav-bar-wrapper {
+    /* color: white;3 */
+    flex: 0 0 0px;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575px) { 
+  .bottom-bav-bar-wrapper  {
+    flex: 0 0 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #23272A;
+  }
+}
+
+.menu-link {
+    color: white;
+    margin: 0.3rem 1.5rem;
+}
+

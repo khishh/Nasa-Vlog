@@ -5,7 +5,7 @@ import LikeButton from '../components/LikeButton';
 import { Apod } from '../models/apod';
 import { SavedApodsContext } from '../SavedApodsContext';
 import { fetchLikedApodDatesFromLocalStorage, saveLikedApodDatesInLocalStorage } from '../utils';
-
+import "../App.css"
 import "../styles/saved.css"
 
 const Saved = () => {
