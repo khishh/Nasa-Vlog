@@ -10,7 +10,6 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import LikeButton from '../components/LikeButton';
 import { SavedApodsContext } from '../SavedApodsContext';
 import useMountedStatus from '../hooks/UseMountedStatus';
-import SideNote from '../components/SideNote';
 
 
 

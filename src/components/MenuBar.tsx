@@ -1,4 +1,4 @@
-import { Theme, Typography, useTheme } from '@mui/material'
+import { Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,19 +12,6 @@ import "../styles/menu-bar.css"
 const MenuBar = () => {
 
     const [isHomeActive, setIsHomeActive] = useState(false);
-
-    const theme = useTheme();
-
-    theme.typography.h5 = {
-        fontSize: '1rem',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: '1.2rem',
-        },
-        [theme.breakpoints.up('md')]: {
-            fontSize: '1.5rem',
-        },
-    }
-
 
     useEffect(() => {
         const currentLocation = window.location.href;

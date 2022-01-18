@@ -17,13 +17,13 @@
 }
 
 .hiddenExplanation {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1rem;
-    max-height: 4rem;
-    transition-property: max-height;
-    transition-duration: 0.5s;
-  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1rem;
+  max-height: 4rem;
+  transition-property: max-height;
+  transition-duration: 0.5s;
+}
   
 .hiddenExplanation-active {
     max-height: 100em;
@@ -38,24 +38,4 @@
 
 .apod-card-button:hover {
   background-color: #424242;
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media (max-width: 576px) { 
-
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (max-width: 768px) { 
-
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (max-width: 992px) { 
-
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) { 
-
 }

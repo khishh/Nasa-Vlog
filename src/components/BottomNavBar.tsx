@@ -32,7 +32,7 @@ const BottomNavBar = () => {
     }
 
     return (
-        <div className="bottom-bav-bar-wrapper">
+        <div className="bottom-nav-bar-wrapper">
             <Link to={'/'} className='menu-link'>
                 {
                     isHomeActive
