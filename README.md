@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# Shopify Front End Developer Intern Challenge - Summer 2022
+A web application where users can check out cool outer-space pictures from NASA.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo
+https://bbur4.csb.app/
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+🏠 Home Page: https://bbur4.csb.app/
 
-### `npm start`
+- Fetches outer space pictures from NASA's Astronomy Photo of the Day API
+- a loading state while we wait for NASA’s API to return data
+- Infinite loading 10 more recent posts as users scroll to the bottom of the page
+- Users can like and dislike each post
+- Animate the “like” action
+- Save liked posts parmanently in local storage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+❤️ Likes Page: https://bbur4.csb.app/likes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Lists liked posts in the chronological order
+- Show messages if there is no liked posts
+- Liked posts are removed when unliked
 
-### `npm test`
+## Technology
+- React.js with TypeScript
+- React Hooks
+- React Context
+- CSS
+- React MUI
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+### Mobile 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| 🏠 Home Page | ❤️ Likes Page |
+| - | - |
+| <img src="https://user-images.githubusercontent.com/60908906/150039629-e4ae1444-224a-43e0-b9c7-b2d858869b52.png" width="350px" /> | <img src="https://user-images.githubusercontent.com/60908906/150039653-c127cb82-19b6-4af3-925d-e9761bde3ddb.png" width="350px" /> |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tablet
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| 🏠 Home Page | ❤️ Likes Page |
+| - | - |
+| <img src="https://user-images.githubusercontent.com/60908906/150040159-3d3ed45c-5fd9-4c63-bb59-7db54edca84b.png" width="350px" /> | <img src="https://user-images.githubusercontent.com/60908906/150040171-e0873223-5e58-4530-a935-f2a4e474b445.png" width="350px" /> |
 
-### `npm run eject`
+### Desktop
+| 🏠 Home Page |
+| - |
+| <img src="https://user-images.githubusercontent.com/60908906/150040362-6955e9d9-94ec-476b-a311-c292db6bf4bb.png" width="750px" /> | 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| ❤️ Likes Page |
+| - |
+| <img src="https://user-images.githubusercontent.com/60908906/150040371-dc1a9ae9-0310-4e28-82d9-1a2e6cf20b97.png" width="750px" /> |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
