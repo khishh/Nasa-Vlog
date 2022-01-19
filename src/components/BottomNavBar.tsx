@@ -40,7 +40,7 @@ const BottomNavBar = () => {
                         : <HomeOutlinedIcon className="menu-icon" fontSize="large" onClick={handleHomeMenuClick} />
                 }
             </Link>
-            <Link to={'/saved'} className="menu-link">
+            <Link to={'/likes'} className="menu-link">
                 {
                     !isHomeActive
                         ? <FavoriteIcon className="menu-icon" fontSize="large" onClick={handleLikesMenuClick} />

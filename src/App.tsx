@@ -47,7 +47,7 @@ function App() {
         <MenuBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/saved" element={<Saved />} />
+          <Route path="/likes" element={<Saved />} />
         </Routes>
       </div>
       <BottomNavBar />

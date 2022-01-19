@@ -50,7 +50,7 @@ const MenuBar = () => {
                             </div>
                     }
                 </Link>
-                <Link to={'/saved'} className="menu-link">
+                <Link to={'/likes'} className="menu-link">
                     {
                         !isHomeActive
                             ? <div className="menu-item-wrapper" onClick={handleLikesMenuClick}>
