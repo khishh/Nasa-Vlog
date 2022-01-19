@@ -15,7 +15,7 @@ const MenuBar = () => {
 
     useEffect(() => {
         const currentLocation = window.location.href;
-        if (currentLocation.includes('saved')) {
+        if (currentLocation.includes('likes')) {
             setIsHomeActive(false);
         } else {
             setIsHomeActive(true);
