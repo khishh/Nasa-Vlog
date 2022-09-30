@@ -1,4 +1,5 @@
 # Shopify Front End Developer Intern Challenge - Summer 2022
+
 A web application where users can check out cool outer-space pictures from NASA.
 
 ## Demo
