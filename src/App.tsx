@@ -7,7 +7,7 @@ import MenuBar from './components/MenuBar';
 import BottomNavBar from './components/BottomNavBar';
 import { Theme, useTheme } from '@mui/material';
 
-const codacyTest = 'codacy';
+const codacyTest = "codacy";
 
 function App() {
 
